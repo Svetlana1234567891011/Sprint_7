@@ -1,12 +1,8 @@
 import pytest
-from faker import Faker
 import allure
 from utils.spesial_request import CourierRequests
 import random
 import string
-import requests
-
-fake = Faker()
 
 
 def generate_random_string(length):
@@ -20,11 +16,6 @@ random_string = generate_random_string(10)
 
 @allure.step('payload для пользователя')
 def register_new_courier_and_return_login_password():
-    '''def generate_random_string(length):
-        letters = string.ascii_lowercase
-        random_string = ''.join(random.choice(letters) for i in range(length))
-        return random_string'''
-
     login = generate_random_string(10)
     password = generate_random_string(10)
     first_name = generate_random_string(10)
@@ -36,34 +27,6 @@ def register_new_courier_and_return_login_password():
     }
 
     return payload
-
-
-'''@pytest.fixture
-def create_user_payload():
-    @allure.step('Конструируем payload для пользователя')
-    def _create_user_payload(login=None, password=None, firstname=None):
-        payload = {}
-        if login == 'rand':
-            payload["login"] = fake.name()
-        elif login is not None:
-            payload["login"] = login
-        if password == 'rand':
-            payload["password"] = fake.pyint()
-        elif password is not None:
-            payload["password"] = password
-        if firstname == 'rand':
-            payload["firstName"] = fake.name()
-        elif firstname is not None:
-            payload["firstName"] = firstname
-        return payload
-
-    return _create_user_payload
-
-
-@pytest.fixture
-@allure.step('Создаем случайное число')
-def make_random_value():
-    return fake.pyint()'''
 
 
 @pytest.fixture
