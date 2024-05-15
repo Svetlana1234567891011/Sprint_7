@@ -43,7 +43,7 @@ def create_order_payload():
 def create_courier_and_login():
     courier = {}
 
-    def _make_courier(data):
+    def _create_courier(data):
         nonlocal courier
         courier_requests = CourierRequests()
         created_courier = courier_requests.post_create_courier(data=data)
@@ -51,5 +51,5 @@ def create_courier_and_login():
         courier = {"created_courier": created_courier, "login_courier": login_courier}
         return courier
 
-    yield _make_courier
+    yield _create_courier
     CourierRequests().delete_courier(courier_id=courier['login_courier']['id'])
